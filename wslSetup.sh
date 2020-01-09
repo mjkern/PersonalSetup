@@ -119,7 +119,7 @@ function setupVim () {
 
 ### run all steps ###
 installSoftware
-createBashShortcuts
+setupBashProfile
 setupVim
 
 echo ~~~~~~~ All Done! ~~~~~~~
