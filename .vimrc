@@ -72,6 +72,17 @@ filetype plugin indent on
 "### end of section copied from andrew .vimrc ###
 
 "------- I am addining this section for vim-plug on 12/23/2019 -------
+
+" and I am adding this if statement to make sure vimplug in always installed
+" based on:
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+" (addition made on 1/9/2020)
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 

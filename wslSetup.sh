@@ -35,7 +35,6 @@ function installSoftware () {
   sudo apt install tree
   reportAndContinue $?
 
-  # TODO: vim and vimplug and vimpluggins
   # TODO: openssh
 
   echo ~~ Done Installing Software
@@ -58,11 +57,17 @@ function createBashShortcuts () {
   echo ~~ Done Creating Bash Shortcuts
 }
 
-### configure vim ###
+### setup vim ###
 function setupVim () {
-  echo ~~~~~ CONFIGURING VIM ~~~~~~~
+  echo ~~~~~ Configuring ~~~~~~~
+
+  echo ~~ installing vim
+  sudo apt install vim
+  reportAndContinue $?
 
   ## download vimrc
+  # notice that vimrc make sure that vimplug is installed so we don't need to
+  # worry about that here
   # possible point of improvement - simply backup the old .vimrc if it exists
   echo ~~ downloading .vimrc
 
@@ -88,6 +93,9 @@ function setupVim () {
   else
     echo unknown response, skipping
   fi
+
+  ## install vimpluggins
+  # TODO
 
   echo ~~ Done with vim
 }
