@@ -37,8 +37,10 @@ function installSoftware () {
 
   # node js is a prerequisite for con.nvim (vim autocomplete plugin)
   echo ~~ installing nodejs in two steps
-  # TODO
-  # also change vimrc problem on line 124
+  curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+  reportAndContinue $?
+  sudo apt-get install nodejs
+  reportAndContinue $?
 
   echo ~~ installing vim
   sudo apt install vim
