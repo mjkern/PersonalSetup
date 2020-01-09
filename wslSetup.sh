@@ -6,7 +6,7 @@ echo ~~~~~~~ Setting up WSL ~~~~~~~~
 ### define a few constants ###
 ADDITION_FLAG="#~~~~~~~ added by personal setup script on $( date -I ) ~~~~~~~#"
 ADDITION_END_FLAG="#~~~~~~~ end of personal setup script additions ~~~~~~~#"
-BASH_PROFILE='testBashProfile.sh' # for testing
+BASH_PROFILE=~/.bash_profile # it is important that the ~ is interpreted and not in quotes
 VIMRC_URL='https://raw.githubusercontent.com/mjkern/PersonalSetup/master/.vimrc'
 
 ### and helper funtions ###
@@ -39,8 +39,8 @@ function installSoftware () {
   sudo apt install vim
   reportAndContinue $?
 
-  echo ~~ isntalling openssh-client
-  sudo apt-install openssh-client
+  echo ~~ installing openssh-client
+  sudo apt install openssh-client
   reportAndContinue $?
 
   echo ~~ Done Installing Software
@@ -57,6 +57,7 @@ function createBashShortcuts () {
   echo '### here are my custom shortcuts ###' >> $BASH_PROFILE
   echo ~~ cdd
   echo 'alias cdd="cd /mnt/c/Users/mjker/Documents"' >> $BASH_PROFILE
+  reportAndContinue $?
   echo '### this is the end of my custom shortcuts ###' >> $BASH_PROFILE
   echo $ADDITION_END_FLAG >> $BASH_PROFILE
 
@@ -105,7 +106,6 @@ function setupVim () {
 }
 
 ### run all steps ###
-
 installSoftware
 createBashShortcuts
 setupVim
