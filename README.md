@@ -4,7 +4,7 @@ This repository is used for storing a bunch of things I find useful when seting 
 ## Windows Subsystem for Linux
 Once you have installed WSL, run the following:
 ```
-sudo bash <(curl -s https://raw.githubusercontent.com/mjkern/PersonalSetup/master/wslSetup.sh)
+curl -sL https://raw.githubusercontent.com/mjkern/PersonalSetup/master/wslSetup.sh | sudo -E bash -
 ```
 
 Then you should be all set.
