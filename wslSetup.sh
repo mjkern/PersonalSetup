@@ -94,8 +94,11 @@ function setupVim () {
     echo unknown response, skipping
   fi
 
-  ## install vimpluggins
-  # TODO
+  ## ensure vim pluggins are installed
+  echo ~~ installing vimplug pluggins
+  source ~/.vimrc
+  vim -c PlugInstall +qall
+  echo '~~ (hopefully that worked...)'
 
   echo ~~ Done with vim
 }

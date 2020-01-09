@@ -1,6 +1,6 @@
 
 " eliminating this shortcut in favor of; CTRL [
-" (which is default eqivalent to ESC on American English keyboards)
+" which is default eqivalent to ESC on American English keyboards
 " :imap jj <Esc>
 
 " some custom settings
