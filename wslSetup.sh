@@ -5,25 +5,27 @@ echo ~~~~~~~ Setting up WSL ~~~~~~~~
 
 ### first, helper funtions ###
 
-#function reportAndContinue () {
+# given the status of a command, prints "complete" if status is 0 and prints
+# an error message otherwise
+function reportAndContinue () {
+  if [ $1 -eq 0 ]; then
+    echo ~~ complete
+  else
+    echo ~~ something went wrong:
+    echo $1
+    echo ~~ continuing anyway...
+  fi
+}
 
 ### software instalation ###
 echo ~~~~~ Installing Software ~~~~~
 
-echo updating and upgrading packages
+echo ~~ updating and upgrading packages
 sudo apt update && sudo apt upgrade
-if [ $? -eq 0 ]; then
-  echo complete
-else
-  echo something went wrong... continuing anyway...
-fi
+reportAndContinue $?
 
-echo installing tree...
+echo ~~ installing tree...
 sudo apt install tree
-if [ $? -eq 0 ]; then
-  echo complete
-else
-  echo something went wrong... continuing anyway...
-fi
+reportAndContinue $?
 
-echo Done Installing Software
+echo ~~ Done Installing Software
