@@ -65,19 +65,27 @@ echo ~~ downloading .vimrc
 
 # be careful about overwriting the old .vimrc
 CONFIRMATION=y
-if [ -e ~/.vimrc ]; then
-  read -p '~/.vimrc already exists. would you like to overwrite it? (y/n)' CONFIRMATION
+#if [ -e ~/.vimrc ]; then
+if [ -e temp/.vimrc ]; then
+  read -p '~/.vimrc already exists. would you like to overwrite it? (y/n) ' CONFIRMATION
 fi
 
 if [ $CONFIRMATION = y ]; then
-  cd ~
+  #cd ~
+  cd temp
   if [ $? = 0 ]; then
     curl -O $VIMRC_URL
     reportAndContinue $?
     cd -
-    if [ ! $0 = 0 ]; then
+    if [ ! $? = 0 ]; then
       echo ~~ fatal error going back to directory
       exit 1
     fi
   fi
+elif [ $CONFIRMATION = n ]; then
+  echo okay, skipping
+else
+  echo unknown response, skipping
 fi
+
+echo ~~ Done with vim
