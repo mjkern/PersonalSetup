@@ -109,3 +109,5 @@ function setupVim () {
 installSoftware
 createBashShortcuts
 setupVim
+
+echo ~~~~~~~ All Done! ~~~~~~~
