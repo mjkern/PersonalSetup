@@ -106,6 +106,6 @@ function setupVim () {
 
 ### run all steps ###
 
-#installSoftware
-#createBashShortcuts
+installSoftware
+createBashShortcuts
 setupVim
