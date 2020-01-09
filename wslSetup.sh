@@ -53,22 +53,27 @@ function installSoftware () {
   echo ~~ Done Installing Software
 }
 
-### bash shortcuts ###
-function createBashShortcuts () {
-  echo ~~~~~ Creating Bash Shortcuts ~~~~~
+### bash profile ###
+function setupBashProfile () {
+  echo ~~~~~ Configuring Bash ~~~~~
 
   # possible point of improvement - only add the shortcuts that don't yet work
 
   echo >> $BASH_PROFILE
   echo $ADDITION_FLAG >> $BASH_PROFILE
   echo '### here are my custom shortcuts ###' >> $BASH_PROFILE
-  echo ~~ cdd
+  echo ~~ adding cdd shortcut
   echo 'alias cdd="cd /mnt/c/Users/mjker/Documents"' >> $BASH_PROFILE
   reportAndContinue $?
-  echo '### this is the end of my custom shortcuts ###' >> $BASH_PROFILE
+  echo >> $BASH_PROFILE
+  echo '### here is other configuration' >> $BASH_PROFILE
+  echo ~~ should bashrc by default, i think
+  echo '# ensure that the proper setting come from .bashrc and whatever' >> $BASH_PROFILE
+  echo '[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile' >> $BASH_PROFILE
+  reportAndContinue $?
   echo $ADDITION_END_FLAG >> $BASH_PROFILE
 
-  echo ~~ Done Creating Bash Shortcuts
+  echo ~~ Done Configuring Bash
 }
 
 ### setup vim ###
