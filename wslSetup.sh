@@ -111,7 +111,7 @@ function setupVim () {
 
   ## ensure vim pluggins are installed
   echo ~~ installing vimplug pluggins
-  vim -c "source ~/.vimrc" -c PlugInstall +qall
+  sudo vim -c "source ~/.vimrc" -c PlugInstall +qall
   echo '~~ (hopefully that worked...)'
 
   echo ~~ Done with vim
