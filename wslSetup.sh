@@ -25,67 +25,78 @@ function reportAndContinue () {
 }
 
 ### software installation ###
-echo ~~~~~ Installing Software ~~~~~
+function installSoftware () {
+  echo ~~~~~ Installing Software ~~~~~
 
-echo ~~ updating and upgrading packages
-sudo apt update && sudo apt upgrade
-reportAndContinue $?
+  echo ~~ updating and upgrading packages
+  sudo apt update && sudo apt upgrade
+  reportAndContinue $?
 
-echo ~~ installing tree...
-sudo apt install tree
-reportAndContinue $?
+  echo ~~ installing tree...
+  sudo apt install tree
+  reportAndContinue $?
 
-# TODO: vim and vimplug and vimpluggins
-# TODO: openssh
+  # TODO: vim and vimplug and vimpluggins
+  # TODO: openssh
 
-echo ~~ Done Installing Software
+  echo ~~ Done Installing Software
+}
 
 ### bash shortcuts ###
+function createBashShortcuts () {
+  echo ~~~~~ Creating Bash Shortcuts ~~~~~
 
-echo ~~~~~ Creating Bash Shortcuts ~~~~~
+  # possible point of improvement - only add the shortcuts that don't yet work
 
-# possible point of improvement - only add the shortcuts that don't yet work
+  echo >> $BASH_PROFILE
+  echo $ADDITION_FLAG >> $BASH_PROFILE
+  echo '### here are my custom shortcuts ###' >> $BASH_PROFILE
+  echo ~~ cdd
+  echo 'alias cdd="cd /mnt/c/Users/mjker/Documents"' >> $BASH_PROFILE
+  echo '### this is the end of my custom shortcuts ###' >> $BASH_PROFILE
+  echo $ADDITION_END_FLAG >> $BASH_PROFILE
 
-echo >> $BASH_PROFILE
-echo $ADDITION_FLAG >> $BASH_PROFILE
-echo '### here are my custom shortcuts ###' >> $BASH_PROFILE
-echo ~~ cdd
-echo 'alias cdd="cd /mnt/c/Users/mjker/Documents"' >> $BASH_PROFILE
-echo '### this is the end of my custom shortcuts ###' >> $BASH_PROFILE
-echo $ADDITION_END_FLAG >> $BASH_PROFILE
-
-echo ~~ Done Creating Bash Shortcuts
+  echo ~~ Done Creating Bash Shortcuts
+}
 
 ### configure vim ###
-echo ~~~~~ CONFIGURING VIM ~~~~~~~
+function setupVim () {
+  echo ~~~~~ CONFIGURING VIM ~~~~~~~
 
-## download vimrc
-# possible point of improvement - simply backup the old .vimrc if it exists
-echo ~~ downloading .vimrc
+  ## download vimrc
+  # possible point of improvement - simply backup the old .vimrc if it exists
+  echo ~~ downloading .vimrc
 
-# be careful about overwriting the old .vimrc
-CONFIRMATION=y
-#if [ -e ~/.vimrc ]; then
-if [ -e temp/.vimrc ]; then
-  read -p '~/.vimrc already exists. would you like to overwrite it? (y/n) ' CONFIRMATION
-fi
-
-if [ $CONFIRMATION = y ]; then
-  #cd ~
-  cd temp
-  if [ $? = 0 ]; then
-    curl -O $VIMRC_URL
-    reportAndContinue $?
-    cd -
-    if [ ! $? = 0 ]; then
-      echo ~~ fatal error going back to directory
-      exit 1
-    fi
+  # be careful about overwriting the old .vimrc
+  CONFIRMATION=y
+  #if [ -e ~/.vimrc ]; then
+  if [ -e temp/.vimrc ]; then
+    read -p '~/.vimrc already exists. would you like to overwrite it? (y/n) ' CONFIRMATION
   fi
-elif [ $CONFIRMATION = n ]; then
-  echo okay, skipping
-else
-  echo unknown response, skipping
-fi
 
-echo ~~ Done with vim
+  if [ $CONFIRMATION = y ]; then
+    #cd ~
+    cd temp
+    if [ $? = 0 ]; then
+      curl -O $VIMRC_URL
+      reportAndContinue $?
+      cd -
+      if [ ! $? = 0 ]; then
+        echo ~~ fatal error going back to directory
+        exit 1
+      fi
+    fi
+  elif [ $CONFIRMATION = n ]; then
+    echo okay, skipping
+  else
+    echo unknown response, skipping
+  fi
+
+  echo ~~ Done with vim
+}
+
+### run all steps ###
+
+installSoftware
+createBashShortcuts
+setupVim
