@@ -28,26 +28,26 @@ function installSoftware () {
   echo ~~~~~ Installing Software ~~~~~
 
   echo ~~ updating and upgrading packages
-  sudo apt update && sudo apt upgrade
+  sudo apt update -y && sudo apt upgrade -y
   reportAndContinue $?
 
   echo ~~ installing tree...
-  sudo apt install tree
+  sudo apt install tree -y
   reportAndContinue $?
 
   # node js is a prerequisite for con.nvim (vim autocomplete plugin)
   echo ~~ installing nodejs in two steps
   curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
   reportAndContinue $?
-  sudo apt-get install nodejs
+  sudo apt-get install nodejs -y
   reportAndContinue $?
 
   echo ~~ installing vim
-  sudo apt install vim
+  sudo apt install vim -y
   reportAndContinue $?
 
   echo ~~ installing openssh-client
-  sudo apt install openssh-client
+  sudo apt install openssh-client -y
   reportAndContinue $?
 
   echo ~~ Done Installing Software
