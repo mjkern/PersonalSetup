@@ -35,7 +35,13 @@ function installSoftware () {
   sudo apt install tree
   reportAndContinue $?
 
-  # TODO: openssh
+  echo ~~ installing vim
+  sudo apt install vim
+  reportAndContinue $?
+
+  echo ~~ isntalling openssh-client
+  sudo apt-install openssh-client
+  reportAndContinue $?
 
   echo ~~ Done Installing Software
 }
@@ -59,11 +65,7 @@ function createBashShortcuts () {
 
 ### setup vim ###
 function setupVim () {
-  echo ~~~~~ Configuring ~~~~~~~
-
-  echo ~~ installing vim
-  sudo apt install vim
-  reportAndContinue $?
+  echo ~~~~~ Configuring vim ~~~~~~~
 
   ## download vimrc
   # notice that vimrc make sure that vimplug is installed so we don't need to
