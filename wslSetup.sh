@@ -6,7 +6,6 @@ echo ~~~~~~~ Setting up WSL ~~~~~~~~
 ### define a few constants ###
 ADDITION_FLAG="#~~~~~~~ added by personal setup script on $( date -I ) ~~~~~~~#"
 ADDITION_END_FLAG="#~~~~~~~ end of personal setup script additions ~~~~~~~#"
-#BASH_PROFILE='~/.bash_profile'
 BASH_PROFILE='testBashProfile.sh' # for testing
 VIMRC_URL='https://raw.githubusercontent.com/mjkern/PersonalSetup/master/.vimrc'
 
@@ -69,14 +68,12 @@ function setupVim () {
 
   # be careful about overwriting the old .vimrc
   CONFIRMATION=y
-  #if [ -e ~/.vimrc ]; then
-  if [ -e temp/.vimrc ]; then
+  if [ -e ~/.vimrc ]; then
     read -p '~/.vimrc already exists. would you like to overwrite it? (y/n) ' CONFIRMATION
   fi
 
   if [ $CONFIRMATION = y ]; then
-    #cd ~
-    cd temp
+    cd ~
     if [ $? = 0 ]; then
       curl -O $VIMRC_URL
       reportAndContinue $?
@@ -97,6 +94,6 @@ function setupVim () {
 
 ### run all steps ###
 
-installSoftware
-createBashShortcuts
+#installSoftware
+#createBashShortcuts
 setupVim
